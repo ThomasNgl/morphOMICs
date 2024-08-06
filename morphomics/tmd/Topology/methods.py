@@ -18,10 +18,10 @@
 import numpy as np
 import scipy.spatial as sp
 
-from tmd.Topology.analysis import sort_ph
-from tmd.Topology.persistent_properties import NoProperty
-from tmd.Topology.persistent_properties import PersistentAngles
-from tmd.Topology.persistent_properties import PersistentMeanRadius
+from morphomics.tmd.Topology.analysis import sort_ph
+from morphomics.tmd.Topology.persistent_properties import NoProperty
+from morphomics.tmd.Topology.persistent_properties import PersistentAngles
+from morphomics.tmd.Topology.persistent_properties import PersistentMeanRadius
 
 
 def write_ph(ph, output_file="test.txt"):

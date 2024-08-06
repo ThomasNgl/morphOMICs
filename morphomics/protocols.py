@@ -1,5 +1,5 @@
 import morphomics
-import morphomics.io
+import morphomics.io import get_infoframe
 
 import os
 
@@ -8,12 +8,14 @@ from morphomics.Analysis.dim_reducer import DimReducer
 from morphomics.Analysis import plotting
 from morphomics.Analysis import subsampler
 
+from morphomics.cells.population import Population
+
 from morphomics.utils import save_obj, load_obj, vectorization_codenames
 from sklearn.preprocessing import Normalizer, StandardScaler
 
 import numpy as np
 import pandas as pd
-import ipyvolume as ipv  # https://ipyvolume.readthedocs.io/en/latest/install.html
+#import ipyvolume as ipv  # https://ipyvolume.readthedocs.io/en/latest/install.html
 from matplotlib import cm, colors
 import matplotlib.pyplot as plt
 
@@ -155,6 +157,7 @@ class Protocols(object):
         data_location_filepath = params["data_location_filepath"]
         extension = params["extension"]
         conditions = params["conditions"]
+        
         separated_by = params["separated_by"]
         filtration_function = params["filtration_function"]
         morphoframe_name = params["morphoframe_name"]
@@ -172,18 +175,61 @@ class Protocols(object):
                                               save_data = save_data)
 
         print("Loading the data from %s"%(data_location_filepath))
+        
+        info_frame = get_infoframe(data_location_filepath,
+                                extension=".swc",
+                                filtration_function="radial_distances",
+                                conditions=[],)
 
         # load the data
-        self.morphoframe[morphoframe_name] = morphomics.io.load_data(
-            folder_location = data_location_filepath,
-            extension = extension,
-            conditions = conditions,
-            filtration_function = filtration_function,
-            separated_by = separated_by,
-            save_filename = save_filepath,
-        )
+        if separated_by is not None:
+            assert (
+                len(conditions) > 1
+            ), "`conditions` must have more than one element. Otherwise, remove `separated_by` argument"
+            assert separated_by in conditions, "`separated_by` must be in `conditions`"
+            
+            cond_values = info_frame[separated_by].unique()
+            info_frame = {}
 
-        print("Saving dataset in %s"%(save_filepath))
+            print("Separating DataFrame into %s..." % separated_by)
+            print("There are %d values for the separating condition..." % len(cond_values))
+
+            for _v in cond_values:
+                print("...processing %s" % _v)
+                _sub_info_frame = (
+                    info_frame.loc[info_frame[separated_by] == _v]
+                    .copy()
+                    .reset_index(drop=True)
+                )
+
+                my_population = Population(folder_path = _sub_info_frame,
+                                        extension = extension,
+                                        conditions = conditions)
+                info_frame[_v] = my_population.cells
+
+                print("Saving sub dataset in %s"%(save_filepath))
+                # save the file 
+                if params["save_data"]:
+                    _save_filename = "%s.%s-%s" % (save_filename, separated_by, _v)
+                    morphomics.utils.save_obj(_sub_info_frame, _save_filename)
+                    print("The sub morphoframe is saved in %s" %(_save_filename))
+
+            info_frame = pd.concat([_sub_info_frame[_c] for _c in cond_values], ignore_index=True)
+                
+        else:
+            my_population = Population(folder_path = info_frame,
+                                        extension = extension,
+                                        conditions = conditions)
+            info_frame = my_population.cells
+
+        # save the file 
+        if params["save_data"]:
+            print("Saving dataset in %s"%(save_filepath))
+            morphomics.utils.save_obj(info_frame, save_filepath)
+            print("The morphoframe is saved in %s" %(save_filepath))
+
+        self.morphoframe[morphoframe_name] = info_frame
+
         print("Input done!")
         print("")
 

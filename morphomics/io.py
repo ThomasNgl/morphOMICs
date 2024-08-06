@@ -13,19 +13,19 @@ from operator import itemgetter
 
 # The following codes were adapted from TMD:
 # https://github.com/BlueBrain/TMD
-from tmd.io.swc import SWC_DCT
-from tmd.io.swc import read_swc
-from tmd.io.swc import swc_to_data
-from tmd.io.io import make_tree
-from tmd.io import io
-from tmd.Population import Population
-from tmd.Neuron import Neuron
-from tmd.Tree import Tree
-from tmd.Soma import Soma
+from morphomics.tmd.io.swc import SWC_DCT
+from morphomics.tmd.io.swc import read_swc
+from morphomics.tmd.io.swc import swc_to_data
+from morphomics.tmd.io.io import make_tree
+from morphomics.tmd.io import io
+from morphomics.tmd.Population import Population
+from morphomics.tmd.Neuron import Neuron
+from morphomics.tmd.Tree import Tree
+from morphomics.tmd.Soma import Soma
 from morphomics.utils import tree_type as td
 from morphomics.utils import save_obj
-from tmd.Topology import analysis
-from tmd.Topology import methods
+from morphomics.tmd.Topology import analysis
+from morphomics.tmd.Topology import methods
 
 
 # Definition of tree types
@@ -108,6 +108,7 @@ def load_neuron(
         neuron.append_tree(tree, tree_types=tree_types_final)
 
     return neuron
+
 
 def load_population(neurons, tree_types=None, name=None):
     """Loads all data of recognised format (.swc) into a Population object.
@@ -249,25 +250,26 @@ def load_data(
     ], "Currently, TMD is only implemented with either radial_distances or path_distances"
 
     # get all the file names in folder_location
-    filenames = glob.glob(
+    filepaths = glob.glob(
         "%s%s/*%s" % (folder_location, "/*" * len(conditions), extension)
     )
     # print a sample of file names
-    nb_files = len(filenames)
+    nb_files = len(filepaths)
     if nb_files > 0:
         print("Sample filenames:")
-        for _ii in range(min(5, nb_files)): print(filenames[_ii])
+        for _ii in range(min(5, nb_files)): print(filepaths[_ii])
         print(" ")
     else:
         print("There are no files in folder_location! Check the folder_location in parameters file or the path to the parameters file.")
     
     # convert the filenames to array for metadata
     file_info = _np.array(
-        [_files.replace(folder_location, "").split("/")[1:] for _files in filenames]
+        [_files.replace(folder_location, "").split("/")[1:] for _files in filepaths]
     )
-    _info_frame = _pd.DataFrame(data=file_info, columns=conditions + ["_file_name"])
-    _info_frame["path_to_file"] = filenames
-    print("Found %d files..." % len(filenames))
+
+    _info_frame = _pd.DataFrame(data=file_info, columns=conditions + ["file_name"])
+    _info_frame["path_to_file"] = filepaths
+    print("Found %d files..." % len(filepaths))
     
     if separated_by is not None:
         assert (

@@ -35,25 +35,25 @@ class Tree:
     """
 
     # pylint: disable=import-outside-toplevel
-    from tmd.Tree.methods import get_bif_term
-    from tmd.Tree.methods import get_bifurcations
-    from tmd.Tree.methods import get_bounding_box
-    from tmd.Tree.methods import get_direction_between
-    from tmd.Tree.methods import get_multifurcations
-    from tmd.Tree.methods import get_pca
-    from tmd.Tree.methods import get_point_path_distances
-    from tmd.Tree.methods import get_point_projection
-    from tmd.Tree.methods import get_point_radial_distances
-    from tmd.Tree.methods import get_point_radial_distances_time
-    from tmd.Tree.methods import get_point_section_branch_orders
-    from tmd.Tree.methods import get_point_section_lengths
-    from tmd.Tree.methods import get_point_weighted_radial_distances
-    from tmd.Tree.methods import get_sections_2
-    from tmd.Tree.methods import get_sections_only_points
-    from tmd.Tree.methods import get_segments
-    from tmd.Tree.methods import get_terminations
-    from tmd.Tree.methods import get_trunk_length
-    from tmd.Tree.methods import get_type
+    from morphomics.tmd.Tree.methods import get_bif_term
+    from morphomics.tmd.Tree.methods import get_bifurcations
+    from morphomics.tmd.Tree.methods import get_bounding_box
+    from morphomics.tmd.Tree.methods import get_direction_between
+    from morphomics.tmd.Tree.methods import get_multifurcations
+    from morphomics.tmd.Tree.methods import get_pca
+    from morphomics.tmd.Tree.methods import get_point_path_distances
+    from morphomics.tmd.Tree.methods import get_point_projection
+    from morphomics.tmd.Tree.methods import get_point_radial_distances
+    from morphomics.tmd.Tree.methods import get_point_radial_distances_time
+    from morphomics.tmd.Tree.methods import get_point_section_branch_orders
+    from morphomics.tmd.Tree.methods import get_point_section_lengths
+    from morphomics.tmd.Tree.methods import get_point_weighted_radial_distances
+    from morphomics.tmd.Tree.methods import get_sections_2
+    from morphomics.tmd.Tree.methods import get_sections_only_points
+    from morphomics.tmd.Tree.methods import get_segments
+    from morphomics.tmd.Tree.methods import get_terminations
+    from morphomics.tmd.Tree.methods import get_trunk_length
+    from morphomics.tmd.Tree.methods import get_type
 
     def __init__(self, x, y, z, d, t, p):
         """Constructor of tmd Tree Object."""

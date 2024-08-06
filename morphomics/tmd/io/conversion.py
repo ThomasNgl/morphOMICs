@@ -19,8 +19,8 @@ from collections import namedtuple
 
 import numpy as np
 
-from tmd.Soma.Soma import Soma
-from tmd.Tree import Tree
+from morphomics.tmd.Soma.Soma import Soma
+from morphomics.tmd.Tree import Tree
 
 SectionData = namedtuple("SectionData", ["points", "diameters", "section_type", "parents"])
 

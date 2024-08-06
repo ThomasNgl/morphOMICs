@@ -18,8 +18,8 @@
 import h5py
 import numpy as np
 
-from tmd.io.swc import SWC_DCT
-from tmd.utils import TmdError
+from morphomics.tmd.io.swc import SWC_DCT
+from morphomics.tmd.utils import TmdError
 
 # Definition of h5 data container
 # separated in points (PX,PY,PZ,PD)

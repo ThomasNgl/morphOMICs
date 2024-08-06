@@ -17,7 +17,7 @@
 
 import warnings
 
-from tmd.Neuron import Neuron
+from morphomics.tmd.Neuron import Neuron
 
 
 class Population:

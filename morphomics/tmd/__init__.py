@@ -19,17 +19,18 @@ A python package for the topological analysis of neurons.
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import importlib.metadata
+from morphomics import tmd  # noqa
 
-from tmd import utils  # noqa
-from tmd.io import io  # noqa
-from tmd.Neuron import Neuron  # noqa
-from tmd.Population import Population  # noqa
-from tmd.Soma import Soma  # noqa
-from tmd.Topology import analysis  # noqa
-from tmd.Topology import distances  # noqa
-from tmd.Topology import methods  # noqa
-from tmd.Topology import statistics  # noqa
-from tmd.Topology import vectorizations  # noqa
-from tmd.Tree import Tree  # noqa
+from morphomics.tmd import utils  # noqa
+from morphomics.tmd.io import io  # noqa
+from morphomics.tmd.Neuron import Neuron  # noqa
+from morphomics.tmd.Population import Population  # noqa
+from morphomics.tmd.Soma import Soma  # noqa
+from morphomics.tmd.Topology import analysis  # noqa
+from morphomics.tmd.Topology import distances  # noqa
+from morphomics.tmd.Topology import methods  # noqa
+from morphomics.tmd.Topology import statistics  # noqa
+from morphomics.tmd.Topology import vectorizations  # noqa
+from morphomics.tmd.Tree import Tree  # noqa
 
-__version__ = importlib.metadata.version("TMD")
+#__version__ = importlib.metadata.version("TMD")

@@ -23,19 +23,19 @@ import numpy as _np
 from scipy import sparse as sp
 from scipy.sparse import csgraph as cs
 
-from tmd.io.conversion import convert_morphio_soma
-from tmd.io.conversion import convert_morphio_trees
-from tmd.io.h5 import read_h5
-from tmd.io.swc import SWC_DCT
-from tmd.io.swc import read_swc
-from tmd.io.swc import swc_to_data
-from tmd.Neuron import Neuron
-from tmd.Population import Population
-from tmd.Soma import Soma
-from tmd.Tree import Tree
-from tmd.utils import SOMA_TYPE
-from tmd.utils import TREE_TYPE_DICT
-from tmd.utils import TmdError
+from morphomics.tmd.io.conversion import convert_morphio_soma
+from morphomics.tmd.io.conversion import convert_morphio_trees
+from morphomics.tmd.io.h5 import read_h5
+from morphomics.tmd.io.swc import SWC_DCT
+from morphomics.tmd.io.swc import read_swc
+from morphomics.tmd.io.swc import swc_to_data
+from morphomics.tmd.Neuron import Neuron
+from morphomics.tmd.Population import Population
+from morphomics.tmd.Soma import Soma
+from morphomics.tmd.Tree import Tree
+from morphomics.tmd.utils import SOMA_TYPE
+from morphomics.tmd.utils import TREE_TYPE_DICT
+from morphomics.tmd.utils import TmdError
 
 
 class LoadNeuronError(TmdError):

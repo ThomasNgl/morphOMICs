@@ -20,9 +20,9 @@ import warnings
 
 import numpy as np
 
-from tmd.Soma import Soma
-from tmd.Tree import Tree
-from tmd.utils import TREE_TYPE_DICT
+from morphomics.tmd.Soma import Soma
+from morphomics.tmd.Tree import Tree
+from morphomics.tmd.utils import TREE_TYPE_DICT
 
 
 class Neuron:
@@ -35,8 +35,8 @@ class Neuron:
     """
 
     # pylint: disable=import-outside-toplevel
-    from tmd.Neuron.methods import get_bounding_box
-    from tmd.Neuron.methods import size
+    from morphomics.tmd.Neuron.methods import get_bounding_box
+    from morphomics.tmd.Neuron.methods import size
 
     def __init__(self, name="Neuron"):
         """Creates an empty Neuron object."""
